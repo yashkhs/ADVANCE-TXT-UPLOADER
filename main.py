@@ -103,7 +103,7 @@ async def upload(bot: Client, m: Message):
     
     
 
-    await editable.edit("ɴᴏᴡ ᴇɴᴛᴇʀ ᴀ ᴄᴀᴘᴛɪᴏɴ ᴛᴏ ᴀᴅᴅ ᴏɴ ʏᴏᴜʀ ᴜᴘʟᴏᴀᴅᴇᴅ ғɪʟᴇ\n\n ᴇɢ ᴛᴜsʜᴀʀ")
+    await editable.edit(""𝗡𝗼𝘄 𝗘𝗻𝘁𝗲𝗿 𝗔 𝗖𝗮𝗽𝘁𝗶𝗼𝗻 𝗧𝗼 𝗔𝗱𝗱 𝗖𝗮𝗽𝘁𝗶𝗼𝗻 𝗢𝗻 𝗬𝗼𝘂𝗿 𝗨𝗽𝗹𝗼𝗮𝗱𝗲𝗱 𝗙𝗶𝗹𝗲\n\n𝗘𝗴 » 𝗧𝘂𝘀𝗵𝗮𝗿")
     input3: Message = await bot.listen(editable.chat.id)
     raw_text3 = input3.text
     await input3.delete(True)
