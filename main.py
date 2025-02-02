@@ -79,7 +79,7 @@ async def upload(bot: Client, m: Message):
     await input1.delete(True)
     
 
-    await editable.edit("**")
+    await editable.edit("**📸 𝗘𝗻𝘁𝗲𝗿 𝗥𝗲𝘀𝗼𝗹𝘂𝘁𝗶𝗼𝗻 📸**\n\n➤ 𝟭𝟰𝟰\n➤ 𝟮𝟰𝟬\n➤ 𝟯𝟲𝟬\n➤ 𝟰𝟴𝟬\n➤ 𝟳𝟮𝟬\n➤ 𝟭𝟬𝟴𝟬")
     input2: Message = await bot.listen(editable.chat.id)
     raw_text2 = input2.text
     await input2.delete(True)
