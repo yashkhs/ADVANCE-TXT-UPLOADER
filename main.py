@@ -34,7 +34,7 @@ bot = Client(
 
 @bot.on_message(filters.command(["start"]))
 async def start(bot: Client, m: Message):
-    await m.reply_text(f"<b>ʜᴇʟʟᴏ {m.from_user.mention} 👋\n\n➨ ɪ ᴀᴍ ᴛxᴛ ᴛᴏ ᴠɪᴅᴇᴏ ᴜᴘʟᴏᴀᴅᴇʀ ʙᴏᴛ.</b>")
+    await m.reply_text(f"<b>ʜᴇʟʟᴏ {m.from_user.mention} 👋\n\n🔮 ɪ ᴀᴍ ᴛxᴛ ᴛᴏ ᴠɪᴅᴇᴏ ᴜᴘʟᴏᴀᴅᴇʀ ʙᴏᴛ.</b>")
 
 
 @bot.on_message(filters.command("stop"))
@@ -79,7 +79,7 @@ async def upload(bot: Client, m: Message):
     await input1.delete(True)
     
 
-    await editable.edit("**📸 𝗘𝗻𝘁𝗲𝗿 𝗥𝗲𝘀𝗼𝗹𝘂𝘁𝗶𝗼𝗻 📸**\n\➤ 𝟭𝟰𝟰\n➤ 𝟮𝟰𝟬\n➤ 𝟯𝟲𝟬\n➤ 𝟰𝟴𝟬\n➤ 𝟳𝟮𝟬\n➤ 𝟭𝟬𝟴𝟬")
+    await editable.edit("**📸 𝗘𝗻𝘁𝗲𝗿 𝗥𝗲𝘀𝗼𝗹𝘂𝘁𝗶𝗼𝗻 📸**\n➤ 𝟭𝟰𝟰\n➤ 𝟮𝟰𝟬\n➤ 𝟯𝟲𝟬\n➤ 𝟰𝟴𝟬\n➤ 𝟳𝟮𝟬\n➤ 𝟭𝟬𝟴𝟬")
     input2: Message = await bot.listen(editable.chat.id)
     raw_text2 = input2.text
     await input2.delete(True)
