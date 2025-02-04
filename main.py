@@ -85,17 +85,17 @@ async def upload(bot: Client, m: Message):
     await input2.delete(True)
     try:
         if raw_text2 == "144":
-            res = "256x144"
+            res = "144x256"
         elif raw_text2 == "240":
-            res = "426x240"
+            res = "240x426"
         elif raw_text2 == "360":
-            res = "640x360"
+            res = "360x640"
         elif raw_text2 == "480":
-            res = "854x480"
+            res = "480x854"
         elif raw_text2 == "720":
-            res = "1280x720"
+            res = "720x1280"
         elif raw_text2 == "1080":
-            res = "1920x1080" 
+            res = "1080x1920" 
         else: 
             res = "UN"
     except Exception:
@@ -199,7 +199,7 @@ async def upload(bot: Client, m: Message):
                         time.sleep(e.x)
                         continue
                 else:
-                    Show = f"**🔔𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗜𝗡𝗚🔔**\n\n**📝ɴᴀᴍᴇ » ** `{name}\n\n❄ǫᴜᴀʟɪᴛʏ » {raw_text2}`\n\n**🔗ᴜʀʟ » ** `Not Defined`\n\n🤖𝗕𝗢𝗧 𝗠𝗔𝗗𝗘 𝗕𝗬 ➤ 𝗧𝗨𝗦𝗛𝗔𝗥"
+                    Show = f"**🔔𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗜𝗡𝗚🔔**\n\n**📝ɴᴀᴍᴇ » ** `{name}\n\n❄ǫᴜᴀʟɪᴛʏ » {res}`\n\n**🔗ᴜʀʟ » ** `{url}`\n\n🤖𝗕𝗢𝗧 𝗠𝗔𝗗𝗘 𝗕𝗬 ➤ 𝗧𝗨𝗦𝗛𝗔𝗥"
                     prog = await m.reply_text(Show)
                     res_file = await helper.download_video(url, cmd, name)
                     filename = res_file
