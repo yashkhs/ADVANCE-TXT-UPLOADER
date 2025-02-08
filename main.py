@@ -163,7 +163,10 @@ async def upload(bot: Client, m: Message):
                 id =  url.split("/")[-2]
                 url =  "https://extractapi.vercel.app/classplus?link=https://cpvod.testbook.com/" + id + "/playlist.m3u8"
                 
-            
+            elif 'cpvod.testbook' in url:
+                id =  url.split("/")[-2]
+                url =  "https://extractapi.vercel.app/classplus?link=https://cpvod.testbook.com/" + id + "/playlist.m3u8"
+             
             if "youtu" in url:
                 ytf = f"b[height<={raw_text2}][ext=mp4]/bv[height<={raw_text2}][ext=mp4]+ba[ext=m4a]/b[ext=mp4]"
             else:
