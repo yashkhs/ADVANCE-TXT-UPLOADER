@@ -6,16 +6,26 @@ import re
 import sys
 import json
 import time
+import aiohttp
 import asyncio
 import requests
 import subprocess
-
+import urllib.parse
+import cloudscraper
+import m3u8
+import random
+import yt_dlp
+from yt_dlp import YoutubeDL
+import yt_dlp as youtube_dl
+import cloudscraper
+import m3u8
 import core as helper
 from utils import progress_bar
 from vars import API_ID, API_HASH, BOT_TOKEN
 from aiohttp import ClientSession
 from pyromod import listen
 from subprocess import getstatusoutput
+from pytube import YouTube
 
 from pyrogram import Client, filters
 from pyrogram.types import Message
@@ -23,6 +33,7 @@ from pyrogram.errors import FloodWait
 from pyrogram.errors.exceptions.bad_request_400 import StickerEmojiInvalid
 from pyrogram.types.messages_and_media import message
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+cookies_file_path = os.getenv("COOKIES_FILE_PATH", "youtube_cookies.txt")
 
 
 bot = Client(
