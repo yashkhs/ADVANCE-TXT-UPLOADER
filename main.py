@@ -31,6 +31,34 @@ bot = Client(
     api_hash=API_HASH,
     bot_token=BOT_TOKEN)
 
+# details.py
+api_id = YOUR_API_ID
+api_hash = "YOUR_API_HASH"
+bot_token = "YOUR_BOT_TOKEN"
+sudo_groups = [YOUR_SUDO_GROUP_ID, YOUR_SECOND_SUDO_GROUP_ID]
+
+import os
+from pyrogram import Client, filters
+
+api_id = int(os.environ.get("BOT_API_ID"))
+api_hash = os.environ.get("BOT_API_HASH")
+bot_token = os.environ.get("BOT_TOKEN")
+sudo_groups = [int(id) for id in os.environ.get("SUDO_GROUPS").split(",")]
+
+bot = Client(
+    "bot",
+    api_id=api_id,
+    api_hash=api_hash,
+    bot_token=bot_token
+)
+
+sudo_users = [12345, 67890] # Add user IDs in a list
+
+@bot.on_message(filters.command("admin_command") & (filters.chat(sudo_groups) | filters.user(sudo_users)))
+async def admin_command_handler(bot: Client, m: Message):
+    # This command is only usable by users in sudo_groups or by sudo_users
+    await m.reply_text("Admin command executed")
+
 
 @bot.on_message(filters.command(["start2"]))
 async def start(bot: Client, m: Message):
@@ -230,7 +258,7 @@ async def upload(bot: Client, m: Message):
 
     except Exception as e:
         await m.reply_text(e)
-    await m.reply_text("**🥳✅𝗦𝘂𝗰𝗰𝗲𝘀𝘀?
+    await m.reply_text("**🥳✅𝗦𝘂𝗰𝗰𝗲𝘀𝘀**")
 
 
      
