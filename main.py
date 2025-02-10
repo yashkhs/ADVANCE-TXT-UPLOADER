@@ -45,14 +45,7 @@ api_hash = os.environ.get("BOT_API_HASH")
 bot_token = os.environ.get("BOT_TOKEN")
 sudo_groups = [int(id) for id in os.environ.get("SUDO_GROUPS").split(",")]
 
-bot = Client(
-    "bot",
-    api_id=api_id,
-    api_hash=api_hash,
-    bot_token=bot_token
-)
-
-sudo_users = [12345, 67890] # Add user IDs in a list
+sudo_users = [5840594311] # Add user IDs in a list
 
 @bot.on_message(filters.command("admin_command") & (filters.chat(sudo_groups) | filters.user(sudo_users)))
 async def admin_command_handler(bot: Client, m: Message):
