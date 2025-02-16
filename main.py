@@ -205,7 +205,14 @@ async def upload(bot: Client, m: Message):
             else:
                 ytf = f"b[height<={raw_text2}]/bv[height<={raw_text2}]+ba/b/bv+ba"
 
-             
+            elif "apps-s3-jw-prod.utkarshapp.com" in url:
+                  headers = {  
+                          "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36",  
+                          "Accept-Language": "en-US,en;q=0.9",  
+                  }
+                  response = requests.get(url, headers=headers)  
+                  print(response.text) 
+            
             if raw_text0 in "vikramjeet" :
                 y= url.replace("/", "%2F")
 #                rout = f"https://www.toprankers.com/?route=common/ajax&mod=liveclasses&ack=getcustompolicysignedcookiecdn&stream=https%3A%2F%2Fsignedsec.toprankers.com%2Flivehttporigin%2F{y[56:-14]}%2Fmaster.m3u8"
