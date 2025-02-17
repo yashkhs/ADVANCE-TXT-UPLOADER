@@ -32,9 +32,10 @@ bot = Client(
     bot_token=BOT_TOKEN)
 
 
-@bot.on_message(filters.command(["start2"]))
+@bot.on_message(filters.command(["start"]))
 async def start(bot: Client, m: Message):
-    await m.reply_text(f"<b>ʜᴇʏ {m.from_user.mention} 👋\n\n ☆ ɪ ᴀᴍ ᴛxᴛ ᴛᴏ ᴠɪᴅᴇᴏ ᴜᴘʟᴏᴀᴅᴇʀ ʙᴏᴛ\n\n ☆ ғᴏʀ ᴜsᴇ ᴍᴇ sᴇɴᴅ /tushar2.</b>", reply_markup=InlineKeyboardMarkup(
+    await m.reply_text(
+        f"<b>ʜᴇʏ {m.from_user.mention} 👋\n\n ☆ ɪ ᴀᴍ ᴛxᴛ ᴛᴏ ᴠɪᴅᴇᴏ ᴜᴘʟᴏᴀᴅᴇʀ ʙᴏᴛ\n\n ☆ ғᴏʀ ᴜsᴇ ᴍᴇ sᴇɴᴅ /tushar2.</b>", reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton("🇮🇳ʙᴏᴛ ᴍᴀᴅᴇ ʙʏ🇮🇳" ,url=f"https://t.me/Tushar0125") ],
