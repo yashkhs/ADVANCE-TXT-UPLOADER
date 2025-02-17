@@ -36,28 +36,28 @@ bot = Client(
 @bot.on_message(filters.command(["start"]))
 async def start(bot: Client, m: Message):
     editable = await m.reply_text(
-       f"𝐇𝐞𝐥𝐥𝐨 ❤️\n\n I Am A Bot For Download Links From Your **.TXT** File And Then Upload That File Om Telegram So Basically\n\n If You Want To Use Me First Send Me ⟰ \n /txt Command And Then Follow Few Steps..\n\n I working link ALL APP TXT WORKING NOT WORKING YOUTUBE LINK. \n\n YOUTUBE LINK WORKING SOON POSSIBLE....\n\n more apps add SOON update contact me :- <a href='https://telegram.me/SONICKUWALSSCBOT'>❖ ꧁༺ ❤️ 𝓚𝓐𝓝𝓗𝓐𝓘𝓨𝓐 𝓛𝓐𝓛 𝓜𝓔𝓔𝓝𝓐 𝓚𝓤𝓦𝓐𝓛 💕 ༻꧂ ❖ ™</a>", reply_markup=InlineKeyboardMarkup(
+       f"ʜᴇʟʟᴏ🙂\n\n ☆ ɪ ᴀᴍ ᴛxᴛ ᴛᴏ ᴠɪᴅᴇᴏ ᴜᴘʟᴏᴀᴅᴇʀ ʙᴏᴛ.\n\n ☆ ғᴏʀ ᴜsᴇ ᴍᴇ sᴇɴᴅ /tushar.</a>", reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("✜ 𝐉𝐨𝐢𝐧 𝐔𝐩𝐃𝐚𝐭𝐞 𝐂𝐡𝐚𝐧𝐧𝐞𝐥 ✜" ,url=f"https://t.me/SONICKUWALUPDATEKANHA") ],
+                    InlineKeyboardButton("🇮🇳ʙᴏᴛ ᴍᴀᴅᴇ ʙʏ🇮🇳" ,url=f"https://t.me/Tushar0125") ],
                     [
-                    InlineKeyboardButton("✜◆ 𝐂𝐨𝐧𝐭𝐚𝐜𝐭 ◆✜" ,url="https://t.me/SONICKUWALSSCBOT") ],
+                    InlineKeyboardButton("🔔ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ🔔" ,url="") ],
                     [
-                    InlineKeyboardButton("🦋 𝐅𝐨𝐥𝐥𝐨𝐰 𝐌𝐞 🦋" ,url="https://t.me/SONICKUWALSSCBOT") ]                               
+                    InlineKeyboardButton("🦋ғᴏʟʟᴏᴡ ᴜs🦋" ,url="https://t.me/AIM_AIIMS143") ]                               
             ]))
   
 
-@bot.on_message(filters.command("stop2"))
+@bot.on_message(filters.command("stop"))
 async def restart_handler(_, m):
     await m.reply_text("**𝗦𝘁𝗼𝗽𝗽𝗲𝗱**🚦", True)
     os.execl(sys.executable, sys.executable, *sys.argv)
 
 @bot.on_message(filters.command("restart"))
 async def restart_handler(_, m):
-    await m.reply_text("Restarted!", True)
+    await m.reply_text("🔮Restarted🔮", True)
     os.execl(sys.executable, sys.executable, *sys.argv)
 
-@bot.on_message(filters.command(["tushar2"]))
+@bot.on_message(filters.command(["tushar"]))
 async def upload(bot: Client, m: Message):
     editable = await m.reply_text('⚡️𝗦𝗘𝗡𝗗 𝗧𝗫𝗧 𝗙𝗜𝗟𝗘⚡️')
     input: Message = await bot.listen(editable.chat.id)
