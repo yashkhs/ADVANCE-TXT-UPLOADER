@@ -29,7 +29,7 @@ OWNER_ID = 5840594311 # Replace with the actual owner's user ID
 
 # List of sudo users (initially empty or pre-populated)
 SUDO_USERS = [5840594311,7856557198]
-
+SUDO_CHANNEL = []
 # Function to check if a user is authorized
 def is_authorized(user_id):
     return user_id in SUDO_USERS
@@ -79,6 +79,51 @@ async def sudo_command(bot: Client, message: Message):
             await message.reply_text("**Usage:** `/sudo add <user_id>` or `/sudo remove <user_id>`")
     except Exception as e:
         await message.reply_text(f"**Error:** {str(e)}")
+
+#/add_channel
+@bot.on_message(filters.command("add_channel"))
+async def add_channel(client, message: Message):
+    user_id = str(message.from_user.id)
+    subscription_data = read_subscription_data()
+
+    if not any(user[0] == user_id for user in subscription_data):
+        await message.reply_text("You are not a premium user.")
+        return
+
+    try:
+        _, channel_id = message.text.split()
+        channels = read_channels_data()
+        if channel_id not in channels:
+            channels.append(channel_id)
+            write_channels_data(channels)
+            await message.reply_text(f"Channel {channel_id} added.")
+        else:
+            await message.reply_text(f"Channel {channel_id} is already added.")
+    except ValueError:
+        await message.reply_text("Invalid command format. Use: /add_channel <channel_id>")
+
+
+#/remove_channels
+@bot.on_message(filters.command("remove_channel"))
+async def remove_channel(client, message: Message):
+    user_id = str(message.from_user.id)
+    subscription_data = read_subscription_data()
+
+    if not any(user[0] == user_id for user in subscription_data):
+        await message.reply_text("You are not a premium user.")
+        return
+
+    try:
+        _, channel_id = message.text.split()
+        channels = read_channels_data()
+        if channel_id in channels:
+            channels.remove(channel_id)
+            write_channels_data(channels)
+            await message.reply_text(f"Channel {channel_id} removed.")
+        else:
+            await message.reply_text(f"Channel {channel_id} is not in the list.")
+    except ValueError:
+        await message.reply_text("Invalid command format. Use: /remove_channels <channel_id>")
 
 # Start command handler
 
