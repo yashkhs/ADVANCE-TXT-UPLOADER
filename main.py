@@ -24,14 +24,63 @@ from pyrogram.errors.exceptions.bad_request_400 import StickerEmojiInvalid
 from pyrogram.types.messages_and_media import message
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
+# Define the owner's user ID
+OWNER_ID = 5840594311 # Replace with the actual owner's user ID
 
+# List of sudo users (initially empty or pre-populated)
+SUDO_USERS = [5840594311,7856557198]
+
+# Function to check if a user is authorized
+def is_authorized(user_id):
+    return user_id in SUDO_USERS
+
+# Function to check if a user is authorized
+def is_authorized(user_id: int) -> bool:
+    return user_id == OWNER_ID or user_id in SUDO_USERS
+    
 bot = Client(
     "bot",
     api_id=API_ID,
     api_hash=API_HASH,
     bot_token=BOT_TOKEN)
 
+# Sudo command to add/remove sudo users
+@bot.on_message(filters.command("sudo"))
+async def sudo_command(bot: Client, message: Message):
+    user_id = message.from_user.id
+    if user_id != OWNER_ID:
+        await message.reply_text("**🚫 You are not authorized to use this command.**")
+        return
 
+    try:
+        args = message.text.split(" ", 2)
+        if len(args) < 2:
+            await message.reply_text("**Usage:** `/sudo add <user_id>` or `/sudo remove <user_id>`")
+            return
+
+        action = args[1].lower()
+        target_user_id = int(args[2])
+
+        if action == "add":
+            if target_user_id not in SUDO_USERS:
+                SUDO_USERS.append(target_user_id)
+                await message.reply_text(f"**✅ User {target_user_id} added to sudo list.**")
+            else:
+                await message.reply_text(f"**⚠️ User {target_user_id} is already in the sudo list.**")
+        elif action == "remove":
+            if target_user_id == OWNER_ID:
+                await message.reply_text("**🚫 The owner cannot be removed from the sudo list.**")
+            elif target_user_id in SUDO_USERS:
+                SUDO_USERS.remove(target_user_id)
+                await message.reply_text(f"**✅ User {target_user_id} removed from sudo list.**")
+            else:
+                await message.reply_text(f"**⚠️ User {target_user_id} is not in the sudo list.**")
+        else:
+            await message.reply_text("**Usage:** `/sudo add <user_id>` or `/sudo remove <user_id>`")
+    except Exception as e:
+        await message.reply_text(f"**Error:** {str(e)}")
+
+# Start command handler
 
 @bot.on_message(filters.command(["start"]))
 async def start(bot: Client, m: Message):
@@ -46,9 +95,14 @@ async def start(bot: Client, m: Message):
                     InlineKeyboardButton("🦋ғᴏʟʟᴏᴡ ᴜs🦋" ,url="https://t.me/AIM_AIIMS143") ]                               
             ]))
   
-
+  
+# Stop command handler
 @bot.on_message(filters.command("stop"))
-async def restart_handler(_, m):
+async def restart_handler(_, m: Message):
+    if not is_authorized(m.from_user.id):
+        await m.reply_text("**🚫 You are not authorized to use this bot.**")
+        return
+
     await m.reply_text("**𝗦𝘁𝗼𝗽𝗽𝗲𝗱**🚦", True)
     os.execl(sys.executable, sys.executable, *sys.argv)
 
@@ -56,14 +110,19 @@ async def restart_handler(_, m):
 async def restart_handler(_, m):
     await m.reply_text("🔮Restarted🔮", True)
     os.execl(sys.executable, sys.executable, *sys.argv)
-
+    
+# Upload command handler
 @bot.on_message(filters.command(["tushar"]))
 async def upload(bot: Client, m: Message):
-    editable = await m.reply_text('⚡️𝗦𝗘𝗡𝗗 𝗧𝗫𝗧 𝗙𝗜𝗟𝗘⚡️')
+    if not is_authorized(m.from_user.id):
+        await m.reply_text("**🚫 You are not authorized to use this bot.**")
+        return
+ 
+    editable = await m.reply_text('⚡𝗦𝗘𝗡𝗗 𝗧𝗫𝗧 𝗙𝗜𝗟𝗘⚡')
     input: Message = await bot.listen(editable.chat.id)
     x = await input.download()
     await input.delete(True)
-
+    
     path = f"./downloads/{m.chat.id}"
 
     try:
