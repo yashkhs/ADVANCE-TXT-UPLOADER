@@ -37,7 +37,16 @@ def is_authorized(user_id):
 # Function to check if a user is authorized
 def is_authorized(user_id: int) -> bool:
     return user_id == OWNER_ID or user_id in SUDO_USERS
+
+# Function to check if a channel is authorized
+def is_authorized(channel_id):
+    return channel_id in channel_USERS
+
+# Function to check if a channel is authorized
+def is_authorized(channel_id: int) -> bool:
+    return channel_id == channel_ID or channel_id in channel_USERS
     
+
 bot = Client(
     "bot",
     api_id=API_ID,
@@ -83,7 +92,7 @@ async def sudo_command(bot: Client, message: Message):
 #/add_channel
 @bot.on_message(filters.command("add_channel"))
 async def add_channel(client, message: Message):
-    user_id = str(message.from_user.id)
+    channel_id = str(message.from_channel.id)
     subscription_data = read_subscription_data()
 
     if not any(user[0] == user_id for user in subscription_data):
@@ -106,7 +115,7 @@ async def add_channel(client, message: Message):
 #/remove_channels
 @bot.on_message(filters.command("remove_channel"))
 async def remove_channel(client, message: Message):
-    user_id = str(message.from_user.id)
+    channel_id = str(message.from_channel.id)
     subscription_data = read_subscription_data()
 
     if not any(user[0] == user_id for user in subscription_data):
