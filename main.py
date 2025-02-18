@@ -80,6 +80,34 @@ async def sudo_command(bot: Client, message: Message):
     except Exception as e:
         await message.reply_text(f"**Error:** {str(e)}")
 
+@bot.on_message(filters.command("add_channel") & auth_or_owner_filter)
+async def add_channel(client: Client, message: Message):
+    global ALLOWED_CHANNEL_IDS
+    try:
+        new_channel_id = int(message.text.split(maxsplit=1)[1])
+        if new_channel_id not in ALLOWED_CHANNEL_IDS:
+            ALLOWED_CHANNEL_IDS.append(new_channel_id)
+            save_allowed_channel_ids(collection, ALLOWED_CHANNEL_IDS)
+            await message.reply(f"Channel {new_channel_id} added to allowed channels.")
+        else:
+            await message.reply(f"Channel {new_channel_id} is already in the allowed channels list.")
+    except (IndexError, ValueError):
+        await message.reply("Please provide a valid channel ID.")
+
+@bot.on_message(filters.command("remove_channel") & auth_or_owner_filter)
+async def remove_channel(client: Client, message: Message):
+    global ALLOWED_CHANNEL_IDS
+    try:
+        channel_to_remove = int(message.text.split(maxsplit=1)[1])
+        if channel_to_remove in ALLOWED_CHANNEL_IDS:
+            ALLOWED_CHANNEL_IDS.remove(channel_to_remove)
+            save_allowed_channel_ids(collection, ALLOWED_CHANNEL_IDS)
+            await message.reply(f"Channel {channel_to_remove} removed from allowed channels.")
+        else:
+            await message.reply(f"Channel {channel_to_remove} is not in the allowed channels list.")
+    except (IndexError, ValueError):
+        await message.reply("Please provide a valid channel ID.")
+
 # Start command handler
 @bot.on_message(filters.command(["start"]))
 async def start(bot: Client, m: Message):
