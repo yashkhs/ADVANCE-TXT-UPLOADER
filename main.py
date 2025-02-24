@@ -25,6 +25,7 @@ from pyrogram.errors import FloodWait
 from pyrogram.errors.exceptions.bad_request_400 import StickerEmojiInvalid
 from pyrogram.types.messages_and_media import message
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+import m3u8
 
 # Define the owner's user ID
 OWNER_ID = 5840594311 # Replace with the actual owner's user ID
@@ -32,13 +33,11 @@ OWNER_ID = 5840594311 # Replace with the actual owner's user ID
 # List of sudo users (initially empty or pre-populated)
 SUDO_USERS = [5840594311,7856557198]
 
-# Function to check if a user is authorized
-def is_authorized(user_id):
-    return user_id in SUDO_USERS
+AUTH_CHANNEL = -1002477348985
 
 # Function to check if a user is authorized
 def is_authorized(user_id: int) -> bool:
-    return user_id == OWNER_ID or user_id in SUDO_USERS
+    return user_id == OWNER_ID or user_id in SUDO_USERS or user_id == AUTH_CHANNEL
 
 bot = Client(
     "bot",
@@ -49,7 +48,7 @@ bot = Client(
 # Sudo command to add/remove sudo users
 @bot.on_message(filters.command("sudo"))
 async def sudo_command(bot: Client, message: Message):
-    user_id = message.from_user.id
+    user_id = message.chat.id
     if user_id != OWNER_ID:
         await message.reply_text("**🚫 You are not authorized to use this command.**")
         return
@@ -100,7 +99,7 @@ async def start(bot: Client, m: Message):
 # Stop command handler
 @bot.on_message(filters.command("stop"))
 async def restart_handler(_, m: Message):
-    if not is_authorized(m.from_user.id):
+    if not is_authorized(m.chat.id):
         await m.reply_text("**🚫 You are not authorized to use this bot.**")
         return
 
@@ -115,7 +114,7 @@ async def restart_handler(_, m):
 # Upload command handler
 @bot.on_message(filters.command(["tushar"]))
 async def upload(bot: Client, m: Message):
-    if not is_authorized(m.from_user.id):
+    if not is_authorized(m.chat.id):
         await m.reply_text("**🚫 You are not authorized to use this bot.**")
         return
  
