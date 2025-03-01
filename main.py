@@ -19,6 +19,10 @@ from aiohttp import ClientSession
 from pyromod import listen
 from subprocess import getstatusoutput
 
+import yt_dlp
+from yt_dlp import YoutubeDL
+import yt_dlp as youtube_dl
+from pytube import YouTube
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from pyrogram.errors import FloodWait
@@ -26,6 +30,8 @@ from pyrogram.errors.exceptions.bad_request_400 import StickerEmojiInvalid
 from pyrogram.types.messages_and_media import message
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import m3u8
+cookies_file_path = os.getenv("COOKIES_FILE_PATH", "youtube_cookies.txt")
+
 
 # Define the owner's user ID
 OWNER_ID = 5840594311 # Replace with the actual owner's user ID
