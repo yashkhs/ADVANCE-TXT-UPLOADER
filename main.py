@@ -202,7 +202,7 @@ async def cookies_handler(client: Client, m: Message):
 # Upload command handler
 @bot.on_message(filters.command(["tushar"]))
 async def upload(bot: Client, m: Message):
-        if not is_authorized(m.chat.id):
+    if not is_authorized(m.chat.id):
         await m.reply_text("**🚫 You are not authorized to use this bot.**")
         return
  
