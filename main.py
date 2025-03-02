@@ -143,13 +143,32 @@ async def start(client: Client, message: Message):
 # Ensure to add the `is_allowed` check at the beginning of each handler.
 
 # Example:
-@bot.on_message(filters.command(["Engineer"]))
+@bot.on_message(filters.command(["tushar"]))
 async def txt_handler(bot: Client, m: Message):
     user_id = m.from_user.id
     if not is_allowed(user_id):
         await m.reply_text("🚫 You are not authorized to use this bot.")
         return
 
+# Stop command handler
+@bot.on_message(filters.command("stop"))
+async def restart_handler(_, m: Message):
+    if not is_authorized(m.from_user.id):
+        await m.reply_text("**🚫 You are not authorized to use this command.**")
+        return
+
+    await m.reply_text("**𝗦𝘁𝗼𝗽𝗽𝗲𝗱**🚦", True)
+    os.execl(sys.executable, sys.executable, *sys.argv)
+
+@bot.on_message(filters.command("restart"))
+async def restart_handler(_, m):
+    if not is_authorized(m.from_user.id):
+        await m.reply_text("**🚫 You are not authorized to use this command.**")
+        return
+  
+    await m.reply_text("🔮Restarted🔮", True)
+    os.execl(sys.executable, sys.executable, *sys.argv)
+  
     # Your existing txt_handler logic here
     editable = await m.reply_text(f"**🔹Hi I am Powerful TXT Downloader📥 Bot.**\n🔹**Send me the TXT file and wait.**")
     input: Message = await bot.listen(editable.chat.id)
