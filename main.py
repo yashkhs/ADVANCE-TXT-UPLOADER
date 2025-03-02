@@ -206,6 +206,9 @@ async def cookies_handler(client: Client, m: Message):
 # Upload command handler
 @bot.on_message(filters.command(["tushar"]))
 async def upload(bot: Client, m: Message):
+    if not is_authorized(m.from_user.id):
+        await m.reply_text("**🚫 You are not authorized to use this command.**")
+        return
     editable = await m.reply_text('⚡𝗦𝗘𝗡𝗗 𝗧𝗫𝗧 𝗙𝗜𝗟𝗘⚡')
     input: Message = await bot.listen(editable.chat.id)
     x = await input.download()
@@ -464,3 +467,5 @@ async def upload(bot: Client, m: Message):
 
 
 bot.run()
+if __name__ == "__main__":
+    asyncio.run(main())
