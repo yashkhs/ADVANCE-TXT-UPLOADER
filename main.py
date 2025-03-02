@@ -138,9 +138,6 @@ caption = (
 # Start command handler
 @bot.on_message(filters.command(["start"]))
 async def start_command(bot: Client, message: Message):
-    if not is_authorized(m.from_user.id):
-        await m.reply_text("**🚫 You are not authorized to use this command.**")
-        return
     await bot.send_photo(chat_id=message.chat.id, photo=random_image_url, caption=caption, reply_markup=keyboard)
     
 # Stop command handler
@@ -205,6 +202,10 @@ async def cookies_handler(client: Client, m: Message):
 # Upload command handler
 @bot.on_message(filters.command(["tushar"]))
 async def upload(bot: Client, m: Message):
+        if not is_authorized(m.chat.id):
+        await m.reply_text("**🚫 You are not authorized to use this bot.**")
+        return
+ 
     editable = await m.reply_text('⚡𝗦𝗘𝗡𝗗 𝗧𝗫𝗧 𝗙𝗜𝗟𝗘⚡')
     input: Message = await bot.listen(editable.chat.id)
     x = await input.download()
