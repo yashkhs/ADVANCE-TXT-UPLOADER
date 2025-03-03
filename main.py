@@ -202,7 +202,7 @@ async def cookies_handler(client: Client, m: Message):
 @bot.on_message(filters.command(["tushar"]))
 async def upload(bot: Client, m: Message):
     if not is_authorized(m.chat.id):
-        await m.reply_text("**🚫You are not authorized to use this bot.\n\n✅For using this bot,buy premium to Tushar.**")
+        await m.reply_text("**🚫You are not authorized to use this bot.\n\n✅For using this bot,buy premium to Tushar.\n\n💰Premium plan »\n🗓️15 Days » 60 INR💵\n🗓️30 Days » 110 INR💴 **")
         return
  
     editable = await m.reply_text('⚡𝗦𝗘𝗡𝗗 𝗧𝗫𝗧 𝗙𝗜𝗟𝗘⚡')
