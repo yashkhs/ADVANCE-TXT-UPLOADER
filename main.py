@@ -14,7 +14,13 @@ import urllib.parse
 import cloudscraper
 import datetime
 import random
+import ffmpeg
+import logging 
 import yt_dlp
+from aiohttp import web
+from core import *
+from urllib.parse import urlparse, parse_qs
+from bs4 import BeautifulSoup
 from yt_dlp import YoutubeDL
 import yt_dlp as youtube_dl
 import cloudscraper
@@ -34,7 +40,6 @@ from pyrogram.errors.exceptions.bad_request_400 import StickerEmojiInvalid
 from pyrogram.types.messages_and_media import message
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 cookies_file_path = os.getenv("COOKIES_FILE_PATH", "youtube_cookies.txt")
-
 
 
 # Define the owner's user ID
