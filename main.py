@@ -303,7 +303,7 @@ async def edit_txt(client, message: Message):
     try:
         await message.reply_document(
             document=final_file_path,
-            caption="🎉 **Here is your edited .txt file with subjects, links, and topics sorted alphabetically!**"
+            caption="📥**𝗘𝗱𝗶𝘁𝗲𝗱 𝗕𝘆 ➤ 𝗧𝘂𝘀𝗵𝗮𝗿**"
         )
     except Exception as e:
         await message.reply_text(f"🚨 **Error**: Unable to send the file.\n\nDetails: {e}")
@@ -319,124 +319,6 @@ import youtube_dl
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 # --- Utility Functions ---
-
-def read_subscription_data():
-    """
-    Reads subscription data from a JSON file to verify premium users.
-    """
-    try:
-        with open("subscription_data.json", "r") as file:
-            return json.load(file)  # Expected format: [["user_id", "expiry_date"], ...]
-    except FileNotFoundError:
-        return []
-
-def sanitize_filename(name):
-    """
-    Sanitizes a string to create a valid filename.
-    """
-    return re.sub(r'[^\w\s-]', '', name).strip().replace(' ', '_')
-
-def get_playlist_videos(playlist_url):
-    """
-    Retrieves video titles and URLs from a YouTube playlist.
-    """
-    try:
-        playlist = Playlist(playlist_url)
-        playlist_title = playlist.title
-        videos = {video.title: video.watch_url for video in playlist.videos}
-        return playlist_title, videos
-    except Exception as e:
-        logging.error(f"Error retrieving playlist videos: {e}")
-        return None, None
-
-def get_channel_videos(channel_url):
-    """
-    Retrieves video titles and URLs from a YouTube channel.
-    """
-    ydl_opts = {
-        'quiet': True,
-        'extract_flat': True,
-        'skip_download': True
-    }
-    try:
-        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-            result = ydl.extract_info(channel_url, download=False)
-            if 'entries' in result:
-                channel_name = result['title']
-                videos = {entry['title']: entry['url'] for entry in result['entries'] if 'url' in entry}
-                return videos, channel_name
-            return None, None
-    except Exception as e:
-        logging.error(f"Error retrieving channel videos: {e}")
-        return None, None
-
-def save_to_file(videos, name):
-    """
-    Saves video titles and URLs to a .txt file.
-    """
-    filename = f"{sanitize_filename(name)}.txt"
-    with open(filename, 'w', encoding='utf-8') as file:
-        for title, url in videos.items():
-            formatted_url = url if url.startswith("https://") else f"https://www.youtube.com/watch?v={url}"
-            file.write(f"{title}: {formatted_url}\n")
-    return filename
-
-
-# --- Bot Command ---
-
-@bot.on_message(filters.command('yt2t'))
-async def ytplaylist_to_txt(client: Client, message: Message):
-    """
-    Handles the extraction of YouTube playlist/channel videos and sends a .txt file.
-    """
-    
-
-    # Request YouTube URL
-    await message.delete()
-    editable = await message.reply_text("📥 **Please enter the YouTube Playlist or Channel URL:**")
-    input_msg = await client.listen(editable.chat.id)
-    youtube_url = input_msg.text
-    await input_msg.delete()
-    await editable.delete()
-
-    # Process the URL
-    if 'playlist' in youtube_url:
-        playlist_title, videos = get_playlist_videos(youtube_url)
-        if videos:
-            file_name = save_to_file(videos, playlist_title)
-            await message.reply_document(
-                document=file_name, 
-                caption=f"🎉 **Here is the text file with titles and URLs of the playlist:** `{playlist_title}`"
-            )
-            os.remove(file_name)
-        else:
-            await message.reply_text("⚠️ **Unable to retrieve the playlist. Please check the URL.**")
-    else:
-        videos, channel_name = get_channel_videos(youtube_url)
-        if videos:
-            file_name = save_to_file(videos, channel_name)
-            await message.reply_document(
-                document=file_name, 
-                caption=f"🎉 **Here is the text file with titles and URLs of the channel:** `{channel_name}`"
-            )
-            os.remove(file_name)
-        else:
-            await message.reply_text("⚠️ **No videos found or the URL is invalid. Please try again.**")
-
-# --- Configuration ---
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-
-# --- Utility Functions ---
-
-def read_subscription_data():
-    """
-    Reads subscription data from a JSON file to verify premium users.
-    """
-    try:
-        with open("subscription_data.json", "r") as file:
-            return json.load(file)  # Expected format: [["user_id", "expiry_date"], ...]
-    except FileNotFoundError:
-        return []
 
 def sanitize_filename(name):
     """
@@ -496,7 +378,7 @@ async def ytplaylist_to_txt(client: Client, message: Message):
 
     # Request YouTube URL
     await message.delete()
-    editable = await message.reply_text("📥 **Please enter the YouTube Playlist or Channel URL:**")
+    editable = await message.reply_text("📥 **Please enter the YouTube Playlist :**")
     input_msg = await client.listen(editable.chat.id)
     youtube_url = input_msg.text
     await input_msg.delete()
@@ -508,7 +390,7 @@ async def ytplaylist_to_txt(client: Client, message: Message):
         file_name = save_to_file(videos, title)
         await message.reply_document(
             document=file_name, 
-            caption=f"🎉 **Here is the text file with titles and URLs:** `{title}`"
+            caption=f"`{title}`\n\n📥 𝗘𝘅𝘁𝗿𝗮𝗰𝘁𝗲𝗱 𝗕𝘆 ➤ 𝗧𝘂𝘀𝗵𝗮𝗿"
         )
         os.remove(file_name)
     else:
