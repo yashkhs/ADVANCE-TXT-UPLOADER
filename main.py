@@ -376,7 +376,7 @@ async def ytplaylist_to_txt(client: Client, message: Message):
     """
     user_id = message.chat.id
     if user_id != OWNER_ID:
-        await message.reply_text("**🚫 You are not authorized to use this command./n/nThis Command is only for owner.**")
+        await message.reply_text("**🚫 You are not authorized to use this command.\n\n🫠 This Command is only for owner.**")
         return
 
     # Request YouTube URL
