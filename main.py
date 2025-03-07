@@ -137,7 +137,8 @@ random_image_url = random.choice(image_urls)
 caption = (
         "**ʜᴇʟʟᴏ👋**\n\n"
         "☆ **ɪ ᴀᴍ ᴛxᴛ ᴛᴏ ᴠɪᴅᴇᴏ ᴜᴘʟᴏᴀᴅᴇʀ ʙᴏᴛ.**\n"
-        "☆ **ғᴏʀ ᴜsᴇ ᴍᴇ sᴇɴᴅ /tushar."
+        "☆ **ғᴏʀ ᴜsᴇ ᴍᴇ sᴇɴᴅ /tushar.\n"
+        "☆ ** For guide send /help."
 )
     
 # Start command handler
@@ -399,6 +400,35 @@ async def ytplaylist_to_txt(client: Client, message: Message):
     else:
         await message.reply_text("⚠️ **Unable to retrieve videos. Please check the URL.**")
 
+        
+# List users command
+@bot.on_message(filters.command("userlist") & filters.user(SUDO_USERS))
+async def list_users(client: Client, msg: Message):
+    if SUDO_USERS:
+        users_list = "\n".join([f"User ID : {user_id}" for user_id in SUDO_USERS])
+        await msg.reply_text(f"SUDO_USERS :\n{users_list}")
+    else:
+        await msg.reply_text("No sudo users.")
+
+
+# Help command
+@bot.on_message(filters.command("help"))
+async def help_command(client: Client, msg: Message):
+    help_text = (
+        "🌟 **Available Commands** 🌟\n\n"
+        "`/start` - Start the bot⚡\n\n"
+        "`/tushar` - Download and upload files (owner)🎬\n\n"
+        "`/restart` - Restart the bot🔮\n\n" 
+        "`/stop` - Stop ongoing process🛑\n\n"
+        "`/cookies` - Upload cookies file🍪\n\n"
+        "`/e2t` - Edit txt file📝\n\n"
+        "`/yt2txt` - Create txt of yt playlist (owner)🗃️\n\n"
+        "`/sudoadd` - Add user or group or channel (owner)➕\n\n"
+        "`/sudoremove` - Remove user or group or channel (owner)❌\n\n"
+        "`/userlist` - List of sudo user or group or channel📜\n\n"
+       
+    )
+    await msg.reply_text(help_text)
 
 # Upload command handler
 @bot.on_message(filters.command(["tushar"]))
