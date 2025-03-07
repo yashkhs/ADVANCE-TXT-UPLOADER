@@ -46,7 +46,7 @@ cookies_file_path = os.getenv("COOKIES_FILE_PATH", "youtube_cookies.txt")
 OWNER_ID = 7856557198 # Replace with the actual owner's user ID
 
 # List of sudo users (initially empty or pre-populated)
-SUDO_USERS = [6854709241,5840594311]
+SUDO_USERS = [6854709241,5840594311,7856557198]
 
 AUTH_CHANNEL = -1002323619979
 
