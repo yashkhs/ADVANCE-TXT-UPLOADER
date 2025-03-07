@@ -374,7 +374,10 @@ async def ytplaylist_to_txt(client: Client, message: Message):
     """
     Handles the extraction of YouTube playlist/channel videos and sends a .txt file.
     """
-    
+    user_id = message.chat.id
+    if user_id != OWNER_ID:
+        await message.reply_text("**🚫 You are not authorized to use this command./n/nThis Command is only for owner.**")
+        return
 
     # Request YouTube URL
     await message.delete()
@@ -401,7 +404,7 @@ async def ytplaylist_to_txt(client: Client, message: Message):
 @bot.on_message(filters.command(["tushar"]))
 async def upload(bot: Client, m: Message):
     if not is_authorized(m.chat.id):
-        await m.reply_text("**🚫You are not authorized to use this bot.\n\n✅For using this bot,buy premium to Tushar.**")
+        await m.reply_text("**🚫You are not authorized to use this bot.\n\n✅For using this bot , buy premium to Tushar.**")
         return
  
     editable = await m.reply_text('⚡𝗦𝗘𝗡𝗗 𝗧𝗫𝗧 𝗙𝗜𝗟𝗘⚡')
