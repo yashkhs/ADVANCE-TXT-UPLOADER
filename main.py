@@ -138,7 +138,7 @@ caption = (
         "**ʜᴇʟʟᴏ👋**\n\n"
         "☆ **ɪ ᴀᴍ ᴛxᴛ ᴛᴏ ᴠɪᴅᴇᴏ ᴜᴘʟᴏᴀᴅᴇʀ ʙᴏᴛ.**\n"
         "☆ **ғᴏʀ ᴜsᴇ ᴍᴇ sᴇɴᴅ /tushar.\n"
-        "☆ ** For guide send /help."
+        "☆ **ғᴏʀ ɢᴜɪᴅᴇ sᴇɴᴅ /help."
 )
     
 # Start command handler
@@ -423,7 +423,7 @@ async def help_command(client: Client, msg: Message):
         "`/cookies` - Upload cookies file🍪\n\n"
         "`/e2t` - Edit txt file📝\n\n"
         "`/yt2txt` - Create txt of yt playlist (owner)🗃️\n\n"
-        "`/sudoadd` - Add user or group or channel (owner)➕\n\n"
+        "`/sudoadd` - Add user or group or channel (owner)🎊\n\n"
         "`/sudoremove` - Remove user or group or channel (owner)❌\n\n"
         "`/userlist` - List of sudo user or group or channel📜\n\n"
        
