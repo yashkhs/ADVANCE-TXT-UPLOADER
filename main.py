@@ -406,7 +406,7 @@ async def ytplaylist_to_txt(client: Client, message: Message):
 async def list_users(client: Client, msg: Message):
     if SUDO_USERS:
         users_list = "\n".join([f"User ID : `{user_id}`" for user_id in SUDO_USERS])
-        await msg.reply_text(f"SUDO_USERS :\n {users_list}")
+        await msg.reply_text(f"SUDO_USERS :\n{users_list}")
     else:
         await msg.reply_text("No sudo users.")
 
