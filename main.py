@@ -382,7 +382,7 @@ async def ytplaylist_to_txt(client: Client, message: Message):
 
     # Request YouTube URL
     await message.delete()
-    editable = await message.reply_text("📥 **Please enter the YouTube Playlist :**")
+    editable = await message.reply_text("📥 **Please enter the YouTube Playlist Url :**")
     input_msg = await client.listen(editable.chat.id)
     youtube_url = input_msg.text
     await input_msg.delete()
@@ -406,7 +406,7 @@ async def ytplaylist_to_txt(client: Client, message: Message):
 async def list_users(client: Client, msg: Message):
     if SUDO_USERS:
         users_list = "\n".join([f"User ID : {user_id}" for user_id in SUDO_USERS])
-        await msg.reply_text(f"SUDO_USERS :\n{users_list}")
+        await msg.reply_text(f"SUDO_USERS :\n`{users_list}`")
     else:
         await msg.reply_text("No sudo users.")
 
@@ -415,7 +415,6 @@ async def list_users(client: Client, msg: Message):
 @bot.on_message(filters.command("help"))
 async def help_command(client: Client, msg: Message):
     help_text = (
-        "🌟 **Available Commands** 🌟\n\n"
         "`/start` - Start the bot⚡\n\n"
         "`/tushar` - Download and upload files (owner)🎬\n\n"
         "`/restart` - Restart the bot🔮\n\n" 
