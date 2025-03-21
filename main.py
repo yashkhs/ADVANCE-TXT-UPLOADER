@@ -41,7 +41,11 @@ from pyrogram.types.messages_and_media import message
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 cookies_file_path = os.getenv("COOKIES_FILE_PATH", "youtube_cookies.txt")
 
-
+async def show_random_emojis(message):
+    emojis = ['🙂', '🥳', '🎊', '⚡️', '🚀', '🌟', '🔥', '✨','🔮','🎉']
+    emoji_message = await message.reply_text(' '.join(random.choices(emojis, k=1)))
+    return emoji_message
+    
 # Define the owner's user ID
 OWNER_ID = 7856557198 # Replace with the actual owner's user ID
 
@@ -433,7 +437,7 @@ async def help_command(client: Client, msg: Message):
 @bot.on_message(filters.command(["tushar"]))
 async def upload(bot: Client, m: Message):
     if not is_authorized(m.chat.id):
-        await m.reply_text("**🚫You are not authorized to use this bot.\n\n✅For using this bot , buy premium to Tushar.**")
+        await m.reply_text("**🚫You are not authorized to use this bot.\n\n🙂🙂🙂**")
         return
  
     editable = await m.reply_text('⚡𝗦𝗘𝗡𝗗 𝗧𝗫𝗧 𝗙𝗜𝗟𝗘⚡')
@@ -673,6 +677,7 @@ async def upload(bot: Client, m: Message):
                         time.sleep(e.x)
                         continue
                 else:
+                    emoji_message = await show_random_emojis(message)
                     Show = f"**🔔𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗜𝗡𝗚🔔**\n\n**📝ɴᴀᴍᴇ » ** `{name}\n\n🔗ᴛᴏᴛᴀʟ ᴜʀʟ » {len(links)}\n\n❄ǫᴜᴀʟɪᴛʏ » {res}`\n\n**🔗ᴜʀʟ » ** `Not Defined`\n\n🤖𝗕𝗢𝗧 𝗠𝗔𝗗𝗘 𝗕𝗬 ➤ 𝗧𝗨𝗦𝗛𝗔𝗥\n\n🙂 चलो फिर से अजनबी बन जायें 🙂"
                     prog = await m.reply_text(Show)
                     res_file = await helper.download_video(url, cmd, name)
