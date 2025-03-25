@@ -691,7 +691,8 @@ async def upload(bot: Client, m: Message):
                     #except Exception as e:
                         #await m.reply_text(str(e))    
                         #time.sleep(1)    
-                        #pass
+                        #continue
+                
                 elif ".pdf" in url:
                     try:
                         cmd = f'yt-dlp -o "{name}.pdf" "{url}"'
