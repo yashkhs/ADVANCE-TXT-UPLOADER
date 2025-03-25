@@ -23,6 +23,6 @@
 - **`/userlist`**: 📜 list of sudo user/group/channel.
 - **`/help`**: 🎉 for help.
 
-#𝗡𝗼𝘁𝗲📝
+## 📝 𝗡𝗼𝘁𝗲
 
 Currently `/start` Command is not working, so after deploy the bot, use direct upload commnand `/tushar`.
