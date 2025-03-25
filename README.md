@@ -6,12 +6,10 @@
 
 ## Credit
 
-<b><details><summary>Tap On Me For See Credit</summary>
-
 🥳 Credit Goes To [💥ᴛᴜsʜᴀʀ💥]
 
   
-## ⚡ Commands
+## 🔥 Commands
 
 - **`start`**: ⚡ check bot is alive.
 - **`tushar`**:  📁 upload txt file.
@@ -23,6 +21,6 @@
 - **`sudoadd`**: 🎊 add user or group or channel (owner).
 - **`sudoremove`**: ❌ remove user or group or channel (owner).
 - **`userlist`**: 📜 list of sudo user/group/channel.
-- **`help`**: ➖ for help.
+- **`help`**: 🎉 for help.
 
 
