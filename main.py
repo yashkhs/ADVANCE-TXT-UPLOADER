@@ -434,7 +434,7 @@ async def help_command(client: Client, msg: Message):
 @bot.on_message(filters.command(["tushar"]))
 async def upload(bot: Client, m: Message):
     if not is_authorized(m.chat.id):
-        await m.reply_text("**🚫You are not authorized to use this bot.\n\n🙂🙂🙂**")
+        await m.reply_text("**🚫You are not authorized to use this bot.**")
         return
  
     editable = await m.reply_text('⚡𝗦𝗘𝗡𝗗 𝗧𝗫𝗧 𝗙𝗜𝗟𝗘⚡')
