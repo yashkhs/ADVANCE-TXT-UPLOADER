@@ -13,27 +13,16 @@
   
 ## ⚡ Commands
 
-- **`start`**: 🚀 check bot is alive.
-- **`tushar`**: 🫠 upload txt file.
+- **`start`**: ⚡ check bot is alive.
+- **`tushar`**:  📁 upload txt file.
 - **`stop`**: 🛑 stop ongoing process.
 - **`restart`**: 🔮 restart the bot.
-- **`e2t`**: 🎲 Get 3 hours of free access.
-- **`adl`**: 👻 Download audio from 30+ sites.
-- **`dl`**: 💀 Download videos from 30+ sites.
-- **`transfer`**: 💘 Gift premium to others.
-- **`myplan`**: ⌛ Get your plan details.
-- **`add`**: ➕ Add user to premium.
-- **`rem`**: ➖ Remove user from premium.
-- **`session`**: 🧵 Generate Pyrogramv2 session.
-- **`settings`**: ⚙️ Personalize settings.
-- **`stats`**: 📊 Get stats of the bot.
-- **`plan`**: 🗓️ Check our premium plans.
-- **`terms`**: 🥺 Terms and conditions.
-- **`speedtest`**: 🚅 Check the server speed.
-- **`get`**: 🗄️ Get all user IDs.
-- **`lock`**: 🔒 Protect channel from extraction.
-- **`gcast`**: ⚡ Broadcast message to bot users.
-- **`help`**: ❓ Help if you're new.
-- **`cancel`**: 🚫 Cancel batch process.
+- **`cookies`**: 🍪 Upload cookies file.
+- **`e2t`**: 📝 edit txt file.
+- **`yt2txt`**: 🗃️ create txt of yt playlist (owner).
+- **`sudoadd`**: 🎊 add user or group or channel (owner).
+- **`sudoremove`**: ❌ remove user or group or channel (owner).
+- **`userlist`**: 📜 list of sudo user/group/channel.
+- **`help`**: ➖ for help.
 
 
