@@ -561,15 +561,19 @@ async def upload(bot: Client, m: Message):
                 name1 = links[i][0].replace("\t", "").replace(":", "").replace("/", "").replace("+", "").replace("#", "").replace("|", "").replace("@", "@").replace("*", "").replace(".", "").replace("https", "").replace("http", "").strip()
                 name = f'{str(count).zfill(3)}) {name1[:60]}'
                 cmd = f'yt-dlp -o "{name}.mp4" "{url}"'
-              
+
+            
+            elif '/master.mpd' in url:
+             id =  url.split("/")[-2]
+             url = f"https://player.muftukmall.site/?id={id}"
             #elif '/master.mpd' in url:
              #id =  url.split("/")[-2]
              #url = f"https://anonymouspwplayer-b99f57957198.herokuapp.com/pw?url={url}?token={raw_text4}"
             #url = f"https://madxapi-d0cbf6ac738c.herokuapp.com/{id}/master.m3u8?token={raw_text4}"
 
-            elif "d1d34p8vz63oiq" in url or "sec1.pw.live" or "/master.mpd"in url:
-            id = url.split("/")[-2]
-            url = f"https://player.muftukmall.site/?id={id}"
+            #elif "d1d34p8vz63oiq" in url or "sec1.pw.live" or "/master.mpd"in url:
+            #id = url.split("/")[-2]
+            #url = f"https://player.muftukmall.site/?id={id}"
             
         
             name1 = links[i][0].replace("\t", "").replace(":", "").replace("/", "").replace("+", "").replace("#", "").replace("|", "").replace("@", "").replace("*", "").replace(".", "").replace("https", "").replace("http", "").strip()
