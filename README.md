@@ -1,5 +1,5 @@
 <h1 align="center">
-  🇮🇳❤️‍🔥ᴛᴜsʜᴀʀ ᴛxᴛ ᴜᴘʟᴏᴀᴅᴇʀ❤️‍🔥🇮🇳
+  🇮🇳 ᴛᴜsʜᴀʀ ᴛxᴛ ᴜᴘʟᴏᴀᴅᴇʀ 🇮🇳
 </h1>
 
 ![Typing SVG](https://readme-typing-svg.herokuapp.com/?lines=Welcome+To+Txt+Uploader+Bot+!)
@@ -25,4 +25,5 @@
 
 ## ✅ Pw Without Purchase Txt Extractor Bot
 
-**`@PwTxtExtractorBot`**: 🎉 Bot Usename 
+🥳 Pw Without Purchase Txt Extractor Bot [Click Here](https://t.me/PwTxtExtractorBot)
+ 
