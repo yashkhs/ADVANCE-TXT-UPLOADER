@@ -23,3 +23,6 @@
 - **`/userlist`**: 📜 list of sudo user/group/channel.
 - **`/help`**: 🎉 for help.
 
+## ✅ Pw Without Purchase Txt Extractor Bot
+
+**`@PwTxtExtractorBot`**: 🎉 Bot Usename 
