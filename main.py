@@ -533,11 +533,8 @@ async def upload(bot: Client, m: Message):
 
     try:
         for i in range(count - 1, len(links)):
-            Vxy = links[i][1].replace("file/d/","uc?export=download&id=").replace("www.youtube-nocookie.com/embed", "youtu.be").replace("?modestbranding=1", "").replace("/view?usp=sharing","")
-            url = "https://" + Vxy
-            link0 = "https://" + Vxy
-            urlver = "https://dragoapi.vercel.app/video/https://" + Vxy
-            
+            V = links[i][1].replace("file/d/","uc?export=download&id=").replace("www.youtube-nocookie.com/embed", "youtu.be").replace("?modestbranding=1", "").replace("/view?usp=sharing","") # .replace("mpd","m3u8")
+            url = "https://" + V
 
             if "visionias" in url:
                 async with ClientSession() as session:
@@ -589,7 +586,12 @@ async def upload(bot: Client, m: Message):
             
             #if 'cpvod.testbook' in url:
                #url = requests.get(f'https://mon-key-3612a8154345.herokuapp.com/get_keys?url=https://cpvod.testbook.com/{CPVOD}/playlist.m3u8', headers={'x-access-token': 'eyJjb3Vyc2VJZCI6IjQ1NjY4NyIsInR1dG9ySWQiOm51bGwsIm9yZ0lkIjo0ODA2MTksImNhdGVnb3J5SWQiOm51bGx9r'}).json()['url']
+           
 
+            elif 'media-cdn.classplusapp.com/drm/' in url:
+                url = f"https://dragoapi.vercel.app/video/{url}"
+
+            
             if 'khansirvod4.pc.cdn.bitgravity.com' in url:               
                parts = url.split('/')               
                part1 = parts[1]
