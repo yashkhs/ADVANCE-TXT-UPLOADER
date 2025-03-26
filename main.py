@@ -438,36 +438,57 @@ async def upload(bot: Client, m: Message):
     if not is_authorized(m.chat.id):
         await m.reply_text("**🚫You are not authorized to use this bot.**")
         return
- 
-    editable = await m.reply_text('⚡𝗦𝗘𝗡𝗗 𝗧𝗫𝗧 𝗙𝗜𝗟𝗘⚡')
+
+    editable = await m.reply_text(f"⚡𝗦𝗘𝗡𝗗 𝗧𝗫𝗧 𝗙𝗜𝗟𝗘⚡")
     input: Message = await bot.listen(editable.chat.id)
     x = await input.download()
     await input.delete(True)
-
-    path = f"./downloads/{m.chat.id}"
-
-    try:
+    file_name, ext = os.path.splitext(os.path.basename(x))
+    pdf_count = 0
+    img_count = 0
+    zip_count = 0
+    video_count = 0
+    
+    try:    
         with open(x, "r") as f:
             content = f.read()
         content = content.split("\n")
+        
         links = []
         for i in content:
-            links.append(i.split("://", 1))
+            if "://" in i:
+                url = i.split("://", 1)[1]
+                links.append(i.split("://", 1))
+                if ".pdf" in url:
+                    pdf_count += 1
+                elif url.endswith((".png", ".jpeg", ".jpg")):
+                    img_count += 1
+                elif ".zip" in url:
+                    zip_count += 1
+                else:
+                    video_count += 1
         os.remove(x)
     except:
-        await m.reply_text("**🙂𝗜𝗻𝘃𝗮𝗹𝗶𝗱 𝗙𝗶𝗹𝗲 𝗜𝗻𝗽𝘂𝘁🙂**")
+        await m.reply_text("😶𝗜𝗻𝘃𝗮𝗹𝗶𝗱 𝗙𝗶𝗹𝗲 𝗜𝗻𝗽𝘂𝘁😶")
         os.remove(x)
         return
    
-    await editable.edit(f"**𝗧𝗼𝘁𝗮𝗹 𝗟𝗶𝗻𝗸𝘀 𝗙𝗼𝘂𝗻𝗱 𝗔𝗿𝗲 🔗🔗** **{len(links)}**\n\n**𝗦𝗲𝗻𝗱 𝗙𝗿𝗼𝗺 𝗪𝗵𝗲𝗿𝗲 𝗬𝗼𝘂 𝗪𝗮𝗻𝘁 𝗧𝗼 𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱 𝗜𝗻𝗶𝘁𝗶𝗮𝗹 𝗜𝘀** **1**")
+    await editable.edit(f"`𝗧𝗼𝘁𝗮𝗹 🔗 𝗟𝗶𝗻𝗸𝘀 𝗙𝗼𝘂𝗻𝗱 𝗔𝗿𝗲 {len(links)}\n\n🔹Img : {img_count}  🔹Pdf : {pdf_count}\n🔹Zip : {zip_count}  🔹Video : {video_count}\n\n🔹𝗦𝗲𝗻𝗱 𝗙𝗿𝗼𝗺 𝗪𝗵𝗲𝗿𝗲 𝗬𝗼𝘂 𝗪𝗮𝗻𝘁 𝗧𝗼 𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱.`")
     input0: Message = await bot.listen(editable.chat.id)
     raw_text = input0.text
     await input0.delete(True)
-
-    await editable.edit("**𝗡𝗼𝘄 𝗣𝗹𝗲𝗮𝘀𝗲 𝗦𝗲𝗻𝗱 𝗠𝗲 𝗬𝗼𝘂𝗿 𝗕𝗮𝘁𝗰𝗵 𝗡𝗮𝗺𝗲**")
+    try:
+        arg = int(raw_text)
+    except:
+        arg = 1
+    await editable.edit("📚 𝗘𝗻𝘁𝗲𝗿 𝗬𝗼𝘂𝗿 𝗕𝗮𝘁𝗰𝗵 𝗡𝗮𝗺𝗲 📚")
     input1: Message = await bot.listen(editable.chat.id)
     raw_text0 = input1.text
     await input1.delete(True)
+    if raw_text0 == '1':
+        b_name = file_name
+    else:
+        b_name = raw_text0
     
 
     await editable.edit("**📸 𝗘𝗻𝘁𝗲𝗿 𝗥𝗲𝘀𝗼𝗹𝘂𝘁𝗶𝗼𝗻 📸**\n➤ `144`\n➤ `240`\n➤ `360`\n➤ `480`\n➤ `720`\n➤ `1080`")
@@ -626,12 +647,12 @@ async def upload(bot: Client, m: Message):
 
             try:  
 
-                cc = f'**[🎬] 𝗩𝗶𝗱_𝗜𝗱 :** {str(count).zfill(3)}.**\n\n\n**☘️𝗧𝗶𝘁𝗹𝗲 𝗡𝗮𝗺𝗲** ➤ {name1}.({res}).𝔗𝔲𝔰𝔥𝔞𝔯.mkv\n\n\n**<pre><code>📚𝗕𝗮𝘁𝗰𝗵 𝗡𝗮𝗺𝗲** ➤ **{raw_text0}</code></pre>**\n\n\n**📥 𝗘𝘅𝘁𝗿𝗮𝗰𝘁𝗲𝗱 𝗕𝘆** ➤  **{raw_text3}**'
-                cpw = f'**[🎬] 𝗩𝗶𝗱_𝗜𝗱 :** {str(count).zfill(3)}.**\n\n\n**☘️𝗧𝗶𝘁𝗹𝗲 𝗡𝗮𝗺𝗲** ➤ {name1}.({res}).𝔗𝔲𝔰𝔥𝔞𝔯.mkv\n\n\n**🔗𝗩𝗶𝗱𝗲𝗼 𝗨𝗿𝗹 ➤ <a href="{url}">__**Click Here to Watch Video**__</a>**\n\n\n**<pre><code>📚𝗕𝗮𝘁𝗰𝗵 𝗡𝗮𝗺𝗲** ➤ **{raw_text0}</code></pre>**\n\n\n**📥 𝗘𝘅𝘁𝗿𝗮𝗰𝘁𝗲𝗱 𝗕𝘆** ➤  **{raw_text3}**'
-                #cyt = f'**[🎬] 𝗩𝗶𝗱_𝗜𝗱 :** {str(count).zfill(3)}.**\n\n\n**☘️𝗧𝗶𝘁𝗹𝗲 𝗡𝗮𝗺𝗲** ➤ {name1}.({res}).𝔗𝔲𝔰𝔥𝔞𝔯.mp4\n\n\n**🔗𝗩𝗶𝗱𝗲𝗼 𝗨𝗿𝗹 ➤ <a href="{url}">__**Click Here to Watch Video**__</a>**\n\n\n**<pre><code>📚𝗕𝗮𝘁𝗰𝗵 𝗡𝗮𝗺𝗲** ➤ **{raw_text0}</code></pre>**\n\n\n**📥 𝗘𝘅𝘁𝗿𝗮𝗰𝘁𝗲𝗱 𝗕𝘆** ➤  **{raw_text3}**'
-                cpvod = f'**[🎬] 𝗩𝗶𝗱_𝗜𝗱 :** {str(count).zfill(3)}.**\n\n\n**☘️𝗧𝗶𝘁𝗹𝗲 𝗡𝗮𝗺𝗲** ➤ {name1}.({res}).𝔗𝔲𝔰𝔥𝔞𝔯.mkv\n\n\n**🔗𝗩𝗶𝗱𝗲𝗼 𝗨𝗿𝗹 ➤ <a href="{url}">__**Click Here to Watch Video**__</a>**\n\n\n**<pre><code>📚𝗕𝗮𝘁𝗰𝗵 𝗡𝗮𝗺𝗲** ➤ **{raw_text0}</code></pre>**\n\n\n**📥 𝗘𝘅𝘁𝗿𝗮𝗰𝘁𝗲𝗱 𝗕𝘆** ➤  **{raw_text3}**'
-                cimg = f'**[📁] 𝗣𝗱𝗳_𝗜𝗱 :** {str(count).zfill(3)}.**\n\n\n**☘️𝗧𝗶𝘁𝗹𝗲 𝗡𝗮𝗺𝗲** ➤ {name1}.𝔗𝔲𝔰𝔥𝔞𝔯.jpg\n\n\n**<pre><code>📚𝗕𝗮𝘁𝗰𝗵 𝗡𝗮𝗺𝗲** ➤ **{raw_text0}</code></pre>**\n\n\n**📥 𝗘𝘅𝘁𝗿𝗮𝗰𝘁𝗲𝗱 𝗕𝘆** ➤  **{raw_text3}**'
-                cc1 = f'**[📁] 𝗣𝗱𝗳_𝗜𝗱 :** {str(count).zfill(3)}.**\n\n\n**☘️𝗧𝗶𝘁𝗹𝗲 𝗡𝗮𝗺𝗲** ➤ {name1}.𝔗𝔲𝔰𝔥𝔞𝔯.pdf\n\n\n**<pre><code>📚𝗕𝗮𝘁𝗰𝗵 𝗡𝗮𝗺𝗲** ➤ **{raw_text0}</code></pre>**\n\n\n**📥 𝗘𝘅𝘁𝗿𝗮𝗰𝘁𝗲𝗱 𝗕𝘆** ➤  **{raw_text3}**'
+                cc = f'**[🎬] 𝗩𝗶𝗱_𝗜𝗱 :** {str(count).zfill(3)}.**\n\n\n**☘️𝗧𝗶𝘁𝗹𝗲 𝗡𝗮𝗺𝗲** ➤ {name1}.({res}).𝔗𝔲𝔰𝔥𝔞𝔯.mkv\n\n\n**<pre><code>📚𝗕𝗮𝘁𝗰𝗵 𝗡𝗮𝗺𝗲** ➤ **{b_name}</code></pre>**\n\n\n**📥 𝗘𝘅𝘁𝗿𝗮𝗰𝘁𝗲𝗱 𝗕𝘆** ➤  **{raw_text3}**'
+                cpw = f'**[🎬] 𝗩𝗶𝗱_𝗜𝗱 :** {str(count).zfill(3)}.**\n\n\n**☘️𝗧𝗶𝘁𝗹𝗲 𝗡𝗮𝗺𝗲** ➤ {name1}.({res}).𝔗𝔲𝔰𝔥𝔞𝔯.mkv\n\n\n**🔗𝗩𝗶𝗱𝗲𝗼 𝗨𝗿𝗹 ➤ <a href="{url}">__**Click Here to Watch Video**__</a>**\n\n\n**<pre><code>📚𝗕𝗮𝘁𝗰𝗵 𝗡𝗮𝗺𝗲** ➤ **{b_name}</code></pre>**\n\n\n**📥 𝗘𝘅𝘁𝗿𝗮𝗰𝘁𝗲𝗱 𝗕𝘆** ➤  **{raw_text3}**'
+                #cyt = f'**[🎬] 𝗩𝗶𝗱_𝗜𝗱 :** {str(count).zfill(3)}.**\n\n\n**☘️𝗧𝗶𝘁𝗹𝗲 𝗡𝗮𝗺𝗲** ➤ {name1}.({res}).𝔗𝔲𝔰𝔥𝔞𝔯.mp4\n\n\n**🔗𝗩𝗶𝗱𝗲𝗼 𝗨𝗿𝗹 ➤ <a href="{url}">__**Click Here to Watch Video**__</a>**\n\n\n**<pre><code>📚𝗕𝗮𝘁𝗰𝗵 𝗡𝗮𝗺𝗲** ➤ **{b_name}</code></pre>**\n\n\n**📥 𝗘𝘅𝘁𝗿𝗮𝗰𝘁𝗲𝗱 𝗕𝘆** ➤  **{raw_text3}**'
+                cpvod = f'**[🎬] 𝗩𝗶𝗱_𝗜𝗱 :** {str(count).zfill(3)}.**\n\n\n**☘️𝗧𝗶𝘁𝗹𝗲 𝗡𝗮𝗺𝗲** ➤ {name1}.({res}).𝔗𝔲𝔰𝔥𝔞𝔯.mkv\n\n\n**🔗𝗩𝗶𝗱𝗲𝗼 𝗨𝗿𝗹 ➤ <a href="{url}">__**Click Here to Watch Video**__</a>**\n\n\n**<pre><code>📚𝗕𝗮𝘁𝗰𝗵 𝗡𝗮𝗺𝗲** ➤ **{b_name}</code></pre>**\n\n\n**📥 𝗘𝘅𝘁𝗿𝗮𝗰𝘁𝗲𝗱 𝗕𝘆** ➤  **{raw_text3}**'
+                cimg = f'**[📁] 𝗣𝗱𝗳_𝗜𝗱 :** {str(count).zfill(3)}.**\n\n\n**☘️𝗧𝗶𝘁𝗹𝗲 𝗡𝗮𝗺𝗲** ➤ {name1}.𝔗𝔲𝔰𝔥𝔞𝔯.jpg\n\n\n**<pre><code>📚𝗕𝗮𝘁𝗰𝗵 𝗡𝗮𝗺𝗲** ➤ **{b_name}</code></pre>**\n\n\n**📥 𝗘𝘅𝘁𝗿𝗮𝗰𝘁𝗲𝗱 𝗕𝘆** ➤  **{raw_text3}**'
+                cc1 = f'**[📁] 𝗣𝗱𝗳_𝗜𝗱 :** {str(count).zfill(3)}.**\n\n\n**☘️𝗧𝗶𝘁𝗹𝗲 𝗡𝗮𝗺𝗲** ➤ {name1}.𝔗𝔲𝔰𝔥𝔞𝔯.pdf\n\n\n**<pre><code>📚𝗕𝗮𝘁𝗰𝗵 𝗡𝗮𝗺𝗲** ➤ **{b_name}</code></pre>**\n\n\n**📥 𝗘𝘅𝘁𝗿𝗮𝗰𝘁𝗲𝗱 𝗕𝘆** ➤  **{raw_text3}**'
           
                 if "drive" in url:
                     try:
@@ -718,6 +739,20 @@ async def upload(bot: Client, m: Message):
                         time.sleep(e.x)
                         count += 1
                         continue
+                
+                elif ".zip" in url:
+                    try:
+                        cmd = f'yt-dlp -o "{name}.zip" "{url}"'
+                        download_cmd = f"{cmd} -R 25 --fragment-retries 25"
+                        os.system(download_cmd)
+                        copy = await bot.send_document(chat_id=m.chat.id, document=f'{name}.zip', caption=cczip)
+                        count += 1
+                        os.remove(f'{name}.zip')
+                    except FloodWait as e:
+                        await m.reply_text(str(e))
+                        time.sleep(e.x)
+                        count += 1
+                        continue
                         
                 elif ".pdf" in url:
                     try:
@@ -742,20 +777,27 @@ async def upload(bot: Client, m: Message):
                     time.sleep(1)
 
             except Exception as e:
-                await m.reply_text(
-                    f"**🥺ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ ғᴀɪʟᴇᴅ🥺 **\n\n{str(e)}\n\n**Name** » {name}\n\n**Link** » `{url}`"
-                )
-                continue
+                await m.reply_text(f'‼️𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱𝗶𝗻𝗴 𝗙𝗮𝗶𝗹𝗲𝗱‼️\n\n'
+                                   f'📝𝗡𝗮𝗺𝗲 » `{name}`\n\n'
+                                   f'🔗𝗨𝗿𝗹 » <a href="{link0}">__**Click Here to See Link**__</a>`')
+                                   
+                #count += 1
+                #failed_count += 1
+                #continue   
+                
 
     except Exception as e:
         await m.reply_text(e)
     #await m.reply_text("**🥳𝗦𝘂𝗰𝗰𝗲𝘀𝘀𝗳𝘂𝗹𝗹𝘆 𝗗𝗼𝗻𝗲🥳**")
     await m.reply_text(f"`✨𝗕𝗮𝘁𝗰𝗵 𝗦𝘂𝗺𝗺𝗮𝗿𝘆✨\n"
                        f"▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n"
-                       f"📝𝗜𝗻𝗱𝗲𝘅 𝗥𝗮𝗻𝗴𝗲 » ({raw_text} to {len(links)})\n"
-                       f"📚𝗕𝗮𝘁𝗰𝗵 𝗡𝗮𝗺𝗲 » {raw_text0}\n"
+                       f"🔢𝗜𝗻𝗱𝗲𝘅 𝗥𝗮𝗻𝗴𝗲 » ({raw_text} to {len(links)})\n"
+                       f"📚𝗕𝗮𝘁𝗰𝗵 𝗡𝗮𝗺𝗲 » {b_name}\n"
                        f"▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n"
                        f"✨𝗧𝘅𝘁 𝗦𝘂𝗺𝗺𝗮𝗿𝘆✨ : {len(links)}\n"
+                       f"▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n"
+                       f"🔹𝗭𝗶𝗽 » {zip_count}  🔹𝗣𝗱𝗳 » {pdf_count}\n"
+                       f"🔹𝗜𝗺𝗴 » {img_count}  🔹𝗩𝗶𝗱𝗲𝗼 » {video_count}\n"
                        f"▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n"
                        f"✅𝗦𝘁𝗮𝘁𝘂𝘀 » 𝗖𝗼𝗺𝗽𝗹𝗲𝘁𝗲𝗱`")
     
