@@ -589,7 +589,7 @@ async def upload(bot: Client, m: Message):
            
 
             elif 'media-cdn.classplusapp.com/drm/' in url:
-                url = f"https://dragoapi.vercel.app/video/{url}"
+            url = f"https://dragoapi.vercel.app/video/{url}"
 
             
             if 'khansirvod4.pc.cdn.bitgravity.com' in url:               
