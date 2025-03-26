@@ -42,7 +42,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 cookies_file_path = os.getenv("COOKIES_FILE_PATH", "youtube_cookies.txt")
 
 pwimg = "https://graph.org/file/8add8d382169e326f67e0-3bf38f92e52955e977.jpg"
-ytimg = "https://graph.org/file/996d4fc24564509244988-a7d93d020c96973ba8.jpg"
+ytimg = "https://graph.org/file/3aa806c302ceec62e6264-60ced740281395f68f.jpg"
     
 # Define the owner's user ID
 OWNER_ID = 7856557198 # Replace with the actual owner's user ID
