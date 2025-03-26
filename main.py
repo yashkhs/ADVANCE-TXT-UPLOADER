@@ -575,6 +575,8 @@ async def upload(bot: Client, m: Message):
             #elif "d1d34p8vz63oiq" in url or "sec1.pw.live" or "/master.mpd"in url:
             #id = url.split("/")[-2]
             #url = f"https://player.muftukmall.site/?id={id}"
+            elif 'media-cdn.classplusapp.com/drm/' in url:
+                url = f"https://dragoapi.vercel.app/video/{url}"
             
         
             name1 = links[i][0].replace("\t", "").replace(":", "").replace("/", "").replace("+", "").replace("#", "").replace("|", "").replace("@", "").replace("*", "").replace(".", "").replace("https", "").replace("http", "").strip()
@@ -587,11 +589,7 @@ async def upload(bot: Client, m: Message):
             #if 'cpvod.testbook' in url:
                #url = requests.get(f'https://mon-key-3612a8154345.herokuapp.com/get_keys?url=https://cpvod.testbook.com/{CPVOD}/playlist.m3u8', headers={'x-access-token': 'eyJjb3Vyc2VJZCI6IjQ1NjY4NyIsInR1dG9ySWQiOm51bGwsIm9yZ0lkIjo0ODA2MTksImNhdGVnb3J5SWQiOm51bGx9r'}).json()['url']
            
-
-            elif 'media-cdn.classplusapp.com/drm/' in url:
-            url = f"https://dragoapi.vercel.app/video/{url}"
-
-            
+           
             if 'khansirvod4.pc.cdn.bitgravity.com' in url:               
                parts = url.split('/')               
                part1 = parts[1]
