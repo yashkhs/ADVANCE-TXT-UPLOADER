@@ -6,7 +6,7 @@
 
 ## Credit
 
-🥳 Credit Goes To [💥ᴛᴜsʜᴀʀ💥]
+🥳 Credit Goes To [Tushar](https://t.me/Tushar0125)
 
   
 ## 🔥 Commands
