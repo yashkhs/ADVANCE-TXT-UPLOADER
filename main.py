@@ -700,7 +700,7 @@ async def upload(bot: Client, m: Message):
 
                 elif "cpvod.testbook.com" in url or "classplusapp.com/drm" in url:
                     try:
-                        await bot.send_photo(chat_id=m.chat.id, photo=photologo, caption=cpvod)
+                        await bot.send_photo(chat_id=m.chat.id, photo=cpimg, caption=cpvod)
                         count +=1
                     except Exception as e:
                         await m.reply_text(str(e))    
