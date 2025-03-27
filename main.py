@@ -782,9 +782,9 @@ async def upload(bot: Client, m: Message):
                                    f'📝𝗡𝗮𝗺𝗲 » `{name}`\n\n'
                                    f'🔗𝗨𝗿𝗹 » <a href="{url}">__**Click Here to See Link**__</a>`')
                                    
-                #count += 1
-                #failed_count += 1
-                #continue   
+                count += 1
+                failed_count += 1
+                continue   
                 
 
     except Exception as e:
@@ -800,6 +800,7 @@ async def upload(bot: Client, m: Message):
                        f"🔹𝗭𝗶𝗽 » {zip_count}  🔹𝗣𝗱𝗳 » {pdf_count}\n"
                        f"🔹𝗜𝗺𝗴 » {img_count}  🔹𝗩𝗶𝗱𝗲𝗼 » {video_count}\n"
                        f"▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
+                       f"🔹𝗙𝗮𝗶𝗹𝗲𝗱 𝗨𝗿𝗹 » {failed_count}
                        f"✅𝗦𝗧𝗔𝗧𝗨𝗦 » 𝗖𝗢𝗠𝗣𝗟𝗘𝗧𝗘𝗗`")
     
 
