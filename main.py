@@ -546,7 +546,7 @@ async def upload(bot: Client, m: Message):
         thumb = "thumb.jpg"
     else:
         thumb == "no"
-    failed_count = 1
+    #failed_count = 1
     if len(links) == 1:
         count = 1
     else:
@@ -782,9 +782,9 @@ async def upload(bot: Client, m: Message):
                                    f'📝𝗡𝗮𝗺𝗲 » `{name}`\n\n'
                                    f'🔗𝗨𝗿𝗹 » <a href="{url}">__**Click Here to See Link**__</a>`')
                                    
-                count += 1
-                failed_count += 1
-                continue   
+                #count += 1
+                #failed_count += 1
+                #continue   
                 
 
     except Exception as e:
@@ -797,11 +797,11 @@ async def upload(bot: Client, m: Message):
                        f"▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n"
                        f"✨𝗧𝗫𝗧 𝗦𝗨𝗠𝗠𝗔𝗥𝗬✨ : {len(links)}\n"
                        f"▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n"
-                       f"🔹𝗩𝗶𝗱𝗲𝗼 » {video_count}\n🔹𝗣𝗱𝗳 » {pdf_count}\n🔹𝗜𝗺𝗴 » {img_count}\n🔹𝗭𝗶𝗽 » {zip_count}\n🔹𝗙𝗮𝗶𝗹𝗲𝗱 𝗨𝗿𝗹 » {failed_count}\n\n"
+                       f"🔹𝗩𝗶𝗱𝗲𝗼 » {video_count}\n🔹𝗣𝗱𝗳 » {pdf_count}\n🔹𝗜𝗺𝗴 » {img_count}\n🔹𝗭𝗶𝗽 » {zip_count}\n\n"
                        f"▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n"
                        f"✅𝗦𝗧𝗔𝗧𝗨𝗦 » 𝗖𝗢𝗠𝗣𝗟𝗘𝗧𝗘𝗗`")
     await m.reply_text(f"<pre><code>📥 𝗘𝘅𝘁𝗿𝗮𝗰𝘁𝗲𝗱 𝗕𝘆『{raw_text3}』</code></pre>")
-                         
+    await m.reply_text(f"<pre><code>『😏𝗥𝗲𝗮𝗰𝘁𝗶𝗼𝗻 𝗞𝗼𝗻 𝗗𝗲𝗴𝗮😏』</code></pre>")                 
 
 bot.run()
 if __name__ == "__main__":
