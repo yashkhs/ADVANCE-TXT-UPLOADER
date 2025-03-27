@@ -546,7 +546,7 @@ async def upload(bot: Client, m: Message):
         thumb = "thumb.jpg"
     else:
         thumb == "no"
-
+    failed_count = 1
     if len(links) == 1:
         count = 1
     else:
