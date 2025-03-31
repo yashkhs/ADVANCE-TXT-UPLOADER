@@ -543,14 +543,14 @@ async def upload(bot: Client, m: Message):
     #else:
         #MR = raw_text3
    
-    #await editable.edit("**𝗘𝗻𝘁𝗲𝗿 𝗣𝘄 𝗧𝗼𝗸𝗲𝗻 𝗙𝗼𝗿 𝗣𝘄 𝗨𝗽𝗹𝗼𝗮𝗱𝗶𝗻𝗴 𝗼𝗿 𝗦𝗲𝗻𝗱 `'noo'` 𝗙𝗼𝗿 𝗢𝘁𝗵𝗲𝗿𝘀**")
-    #input4: Message = await bot.listen(editable.chat.id)
-    #raw_text4 = input4.text
-    #await input4.delete(True)
-    #if raw_text4 == 'noo':
-        #MR = token
-    #else:
-        #MR = raw_text4
+    await editable.edit("**𝗘𝗻𝘁𝗲𝗿 𝗣𝘄 𝗧𝗼𝗸𝗲𝗻 𝗙𝗼𝗿 𝗣𝘄 𝗨𝗽𝗹𝗼𝗮𝗱𝗶𝗻𝗴 𝗼𝗿 𝗦𝗲𝗻𝗱 `3` 𝗙𝗼𝗿 𝗢𝘁𝗵𝗲𝗿𝘀**")
+    input4: Message = await bot.listen(editable.chat.id)
+    raw_text4 = input4.text
+    await input4.delete(True)
+    if raw_text4 == 3:
+        MR = token
+    else:
+        MR = raw_text4
     
     await editable.edit("𝗡𝗼𝘄 𝗦𝗲𝗻𝗱 𝗧𝗵𝗲 𝗧𝗵𝘂𝗺𝗯 𝗨𝗿𝗹 𝗘𝗴 » https://graph.org/file/13a89d77002442255efad-989ac290c1b3f13b44.jpg\n\n𝗢𝗿 𝗜𝗳 𝗗𝗼𝗻'𝘁 𝗪𝗮𝗻𝘁 𝗧𝗵𝘂𝗺𝗯𝗻𝗮𝗶𝗹 𝗦𝗲𝗻𝗱 = 𝗻𝗼")
     input6 = message = await bot.listen(editable.chat.id)
@@ -609,13 +609,13 @@ async def upload(bot: Client, m: Message):
             #elif '/master.mpd' in url:
              #id =  url.split("/")[-2]
              #url = f"https://player.muftukmall.site/?id={id}"
-            #elif '/master.mpd' in url:
-             #id =  url.split("/")[-2]
-             #url = f"https://anonymouspwplayer-b99f57957198.herokuapp.com/pw?url={url}?token={raw_text4}"
-             #url = f"https://madxabhi-pw.onrender.com/{id}/master.m3u8?token={raw_text4}"
             elif '/master.mpd' in url:
              id =  url.split("/")[-2]
-             url = f"https://dl.alphacbse.site/download/{id}/master.m3u8"
+             #url = f"https://anonymouspwplayer-b99f57957198.herokuapp.com/pw?url={url}?token={raw_text4}"
+             url = f"https://madxabhi-pw.onrender.com/{id}/master.m3u8?token={raw_text4}"
+            #elif '/master.mpd' in url:
+             #id =  url.split("/")[-2]
+             #url = f"https://dl.alphacbse.site/download/{id}/master.m3u8"
             
         
             name1 = links[i][0].replace("\t", "").replace(":", "").replace("/", "").replace("+", "").replace("#", "").replace("|", "").replace("@", "").replace("*", "").replace(".", "").replace("https", "").replace("http", "").strip()
