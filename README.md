@@ -18,8 +18,8 @@
 - **`/cookies`**: 🍪 upload cookies file.
 - **`/e2t`**: 📝 edit txt file.
 - **`/yt2txt`**: 🗃️ create txt of yt playlist (owner).
-- **`/sudoadd`**: 🎊 add user or group or channel (owner).
-- **`/sudoremove`**: ❌ remove user or group or channel (owner).
+- **`/sudo add`**: 🎊 add user or group or channel (owner).
+- **`/sudo remove`**: ❌ remove user or group or channel (owner).
 - **`/userlist`**: 📜 list of sudo user/group/channel.
 - **`/help`**: 🎉 for help.
 
