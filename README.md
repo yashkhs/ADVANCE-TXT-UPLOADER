@@ -24,9 +24,9 @@
 - **`/help`**: 🎉 for help.
 
 
-## ✅ Pw Without Purchase Txt Extractor Bot
+## ✅ Pw & Cp Without Purchase Txt Extractor Bot
 
-🥳 Pw Without Purchase Txt Extractor Bot [Click Here](https://t.me/PwTxtExtractorBot)
+🥳 Pw & Cp Without Purchase Txt Extractor Bot [Click Here](https://t.me/PwCpTxtExtractorBot)
  
 
 ## Guide For Heroku Deployment 
