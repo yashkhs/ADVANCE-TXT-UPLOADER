@@ -40,6 +40,27 @@ from pyrogram.errors.exceptions.bad_request_400 import StickerEmojiInvalid
 from pyrogram.types.messages_and_media import message
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
+
+async def add_intro_thumb(video_path, output_path):
+    thumb_path = "intro_thumb.jpg"
+    thumb_url = "https://i.ibb.co/9mt37JKG/x.png"
+
+    # Download thumbnail image once if not present
+    if not os.path.exists(thumb_path):
+        subprocess.getstatusoutput(f"wget '{thumb_url}' -O '{thumb_path}'")
+
+    # Use ffmpeg to prepend 4s static image to video
+    cmd = (
+        f'ffmpeg -y -loop 1 -t 4 -i "{thumb_path}" -i "{video_path}" '
+        f'-filter_complex "[0:v]scale=1280:720,setsar=1[v0];[1:v]scale=1280:720,setsar=1[v1];'
+        f'[v0][v1]concat=n=2:v=1:a=0[outv]" '
+        f'-map "[outv]" -c:v libx264 "{output_path}"'
+    )
+    status, output = subprocess.getstatusoutput(cmd)
+    if status != 0:
+        raise Exception(f"FFmpeg failed to create intro video: {output}")
+
+
 # MongoDB configuration
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
 DB_NAME = "PremiumBot"
@@ -811,6 +832,11 @@ async def upload(bot: Client, m: Message):
                     prog = await m.reply_text(Show)
                     res_file = await helper.download_video(url, cmd, name)
                     filename = res_file
+
+                    intro_output = f"intro_{filename}"
+                    await add_intro_thumb(filename, intro_output)
+                    filename = intro_output
+
                     await prog.delete(True)
                     await emoji_message.delete()
                     await helper.send_vid(bot, m, cc, filename, thumb, name, prog)
